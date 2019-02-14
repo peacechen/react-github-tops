@@ -32,9 +32,7 @@ class ReposList extends Component {
     // ToDo: use redux-thunk to support async actions and move API calls to actions
     axios.get('https://api.github.com/search/repositories?sort=stars&q=language:javascript').then(response => {
       if (response.data.items) {
-        for (let repo of response.data.items) {
-          this.props.addRepo(repo);
-        }
+        this.props.setRepos(response.data.items);
       }
     })
     .catch(err => console.log(err)); // ToDo: show error
